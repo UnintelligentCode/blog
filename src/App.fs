@@ -11,17 +11,21 @@ mainDiv.setAttribute("id", "mainDiv")
 mainDiv.style.display <- "grid"
 mainDiv.style.setProperty("grid-template-areas", "\"head head\" \"snav main\"")
 
+let hTitle = document.createElement "h1"
+hTitle.textContent <- "Victor's Web App Blog"
+
+hTitle.style.textAlign <- "center"
+hTitle.style.marginBottom <- "10em"
+
 let sideNav = document.createElement "div" :?> HTMLDivElement
 sideNav.style.setProperty("grid-area", "snav")
 sideNav.style.backgroundColor <- "yellow"
 sideNav.style.width <- "9vw"
 
 let header = document.createElement "div" :?> HTMLDivElement
-header.textContent <- "Head"
-
 header.style.setProperty("grid-area", "head")
-header.style.backgroundColor <- "biege"
-header.style.height <- "10vh"
+header.style.backgroundColor <- "pink"
+header.style.height <- "11vh"
 
 let main = document.createElement "div" :?> HTMLDivElement
 main.textContent <- "Main"
@@ -29,7 +33,7 @@ main.textContent <- "Main"
 main.setAttribute("data-page", "current")
 main.style.setProperty("grid-area", "main")
 main.style.backgroundColor <- "red"
-main.style.height <- "88vh"
+main.style.height <- "87vh"
 main.style.width <- "90vw"
 
 let main2 = document.createElement "div" :?> HTMLDivElement
@@ -51,14 +55,28 @@ main3.style.width <- "90vw"
 let navList = document.createElement "ul" :?> HTMLUListElement
 let nav1 = document.createElement "li"
 let nav2 = document.createElement "li"
+let nav3 = document.createElement "li"
+let nav4 = document.createElement "li"
+navList.appendChild nav4 |> ignore
 navList.appendChild nav1 |> ignore
 navList.appendChild nav2 |> ignore
+navList.appendChild nav3 |> ignore
 
 navList.style.margin <- "0"
 navList.style.padding <- "0"
 
 nav1.style.setProperty("list-style-type", "none")
 nav2.style.setProperty("list-style-type", "none")
+nav3.style.setProperty("list-style-type", "none")
+
+let ocSideNav = document.createElement "button" :?> HTMLButtonElement
+ocSideNav.textContent <- "Close"
+ocSideNav.setAttribute("data-open", "true")
+
+ocSideNav.style.display <- "block"
+ocSideNav.style.padding <- "8px"
+ocSideNav.style.backgroundColor <- "rose"
+ocSideNav.style.width <- "100%"
 
 let navB1 = document.createElement "button" :?> HTMLButtonElement
 navB1.textContent <- "Test 1"
@@ -76,14 +94,24 @@ navB2.style.padding <- "8px"
 navB2.style.backgroundColor <- "aqua"
 navB2.style.width <- "100%"
 
+let navB3 = document.createElement "button" :?> HTMLButtonElement
+navB3.textContent <- "Test 3" 
+navB3.style.display <- "block"
+navB3.style.padding <- "8px"
+navB3.style.backgroundColor <- "beige"
+navB3.style.width <- "100%"
+
 // appending elements
 nav1.appendChild navB1 |> ignore
 nav2.appendChild navB2 |> ignore
+nav3.appendChild navB3 |> ignore
+nav4.appendChild ocSideNav |> ignore
 body.appendChild mainDiv |> ignore
 mainDiv.appendChild header |> ignore
 mainDiv.appendChild sideNav |> ignore
 sideNav.appendChild navList |> ignore
 mainDiv.appendChild main |> ignore
+header.appendChild hTitle |> ignore
 
 (* sideNav.addEventListener("click", fun e -> 
   mainDiv.style.setProperty("grid-template-areas", "\"head head\" \"main main\"")
@@ -98,4 +126,27 @@ navB1.addEventListener("click", fun e ->
 navB2.addEventListener("click", fun e -> 
   mainDiv.replaceChild(main3, document.querySelector "[data-page=current]") |> ignore
   main3.setAttribute("data-page", "current")
+)
+
+navB3.addEventListener("click", fun e -> 
+  mainDiv.replaceChild(main, document.querySelector "[data-page=current]") |> ignore
+)
+
+ocSideNav.addEventListener("click", fun e ->
+  if ocSideNav.getAttribute "data-open" = "true" then
+    sideNav.style.width <- "2vw"
+    main.style.width <- "97vw"
+    navB1.textContent <- "1"
+    navB2.textContent <- "2"
+    navB3.textContent <- "3"
+    ocSideNav.textContent <- "O"
+    ocSideNav.setAttribute("data-open", "false")
+  else
+    sideNav.style.width <- "9vw"
+    main.style.width <- "90vw"
+    navB1.textContent <- "Test 1"
+    navB2.textContent <- "Test 2"
+    navB3.textContent <- "Test 3"
+    ocSideNav.textContent <- "Close"
+    ocSideNav.setAttribute("data-open", "true")
 )
