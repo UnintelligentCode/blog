@@ -55,10 +55,13 @@ let nav1 = document.createElement "li"
 let nav2 = document.createElement "li"
 let nav3 = document.createElement "li"
 let nav4 = document.createElement "li"
+let nav5 = document.createElement "li"
 navList.appendChild nav4 |> ignore
 navList.appendChild nav1 |> ignore
 navList.appendChild nav2 |> ignore
 navList.appendChild nav3 |> ignore
+navList.appendChild nav3 |> ignore
+navList.appendChild nav5 |> ignore
 
 navList.style.margin <- "0"
 navList.style.padding <- "0"
@@ -94,10 +97,19 @@ navB2.style.width <- "100%"
 
 let navB3 = document.createElement "button" :?> HTMLButtonElement
 navB3.textContent <- "Test 3" 
+
 navB3.style.display <- "block"
 navB3.style.padding <- "8px"
 navB3.style.backgroundColor <- "beige"
 navB3.style.width <- "100%"
+
+let blogPostBtn = document.createElement "button" :?> HTMLButtonElement 
+blogPostBtn.textContent <- "New Post"
+
+blogPostBtn.style.display <- "block"
+blogPostBtn.style.padding <- "8px"
+blogPostBtn.style.backgroundColor <- "green"
+blogPostBtn.style.width <- "100%"
 
 let content = document.createElement "article"
 let contentMainH = document.createElement "h1"
@@ -120,6 +132,7 @@ nav1.appendChild navB1 |> ignore
 nav2.appendChild navB2 |> ignore
 nav3.appendChild navB3 |> ignore
 nav4.appendChild ocSideNav |> ignore
+nav5.appendChild blogPostBtn |> ignore
 body.appendChild mainDiv |> ignore
 mainDiv.appendChild header |> ignore
 mainDiv.appendChild sideNav |> ignore
@@ -156,6 +169,7 @@ ocSideNav.addEventListener("click", fun e ->
     navB2.textContent <- "2"
     navB3.textContent <- "3"
     ocSideNav.textContent <- "O"
+    blogPostBtn.textContent <- "NP"
     ocSideNav.setAttribute("data-open", "false")
   else
     sideNav.style.width <- "9vw"
@@ -166,5 +180,6 @@ ocSideNav.addEventListener("click", fun e ->
     navB2.textContent <- "Test 2"
     navB3.textContent <- "Test 3"
     ocSideNav.textContent <- "Close"
+    blogPostBtn.textContent <- "NP"
     ocSideNav.setAttribute("data-open", "true")
 )
