@@ -19,20 +19,18 @@ hTitle.style.marginBottom <- "10em"
 
 let sideNav = document.createElement "div" :?> HTMLDivElement
 sideNav.style.setProperty("grid-area", "snav")
-sideNav.style.backgroundColor <- "yellow"
+sideNav.style.backgroundColor <- "beige"
 sideNav.style.width <- "9vw"
 
 let header = document.createElement "div" :?> HTMLDivElement
 header.style.setProperty("grid-area", "head")
-header.style.backgroundColor <- "pink"
+header.style.backgroundColor <- "beige"
 header.style.height <- "11vh"
 
 let main = document.createElement "div" :?> HTMLDivElement
-main.textContent <- "Main"
-
 main.setAttribute("data-page", "current")
+
 main.style.setProperty("grid-area", "main")
-main.style.backgroundColor <- "red"
 main.style.height <- "87vh"
 main.style.width <- "90vw"
 
@@ -101,6 +99,22 @@ navB3.style.padding <- "8px"
 navB3.style.backgroundColor <- "beige"
 navB3.style.width <- "100%"
 
+let content = document.createElement "article"
+let contentMainH = document.createElement "h1"
+contentMainH.textContent <- "First Post!"
+let contentH = document.createElement "h2"
+contentH.textContent <- "First Post Inside Header"
+let contentP = document.createElement "p"
+contentP.textContent <- "Testing, Testing, 1 2 3"
+
+let commentBox = document.createElement "textarea" :?> HTMLTextAreaElement
+commentBox.style.width <- "100%"
+
+main.appendChild contentMainH |> ignore
+content.appendChild contentH |> ignore
+content.appendChild contentP |> ignore
+main.appendChild content |> ignore
+
 // appending elements
 nav1.appendChild navB1 |> ignore
 nav2.appendChild navB2 |> ignore
@@ -136,6 +150,8 @@ ocSideNav.addEventListener("click", fun e ->
   if ocSideNav.getAttribute "data-open" = "true" then
     sideNav.style.width <- "2vw"
     main.style.width <- "97vw"
+    main2.style.width <- "97vw"
+    main3.style.width <- "97vw"
     navB1.textContent <- "1"
     navB2.textContent <- "2"
     navB3.textContent <- "3"
@@ -144,6 +160,8 @@ ocSideNav.addEventListener("click", fun e ->
   else
     sideNav.style.width <- "9vw"
     main.style.width <- "90vw"
+    main2.style.width <- "90vw"
+    main3.style.width <- "90vw"
     navB1.textContent <- "Test 1"
     navB2.textContent <- "Test 2"
     navB3.textContent <- "Test 3"
